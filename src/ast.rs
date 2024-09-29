@@ -68,23 +68,23 @@ impl Ast {
         self.step(Token::LParen)?;
         self.step(Token::RParen)?;
 
-        let mut main_things = LinkedList::new();
+        let mut main_stuff = LinkedList::new();
         loop {
             match self.front()? {
                 Token::Int => {
                     self.next();
-                    main_things.push_back(MainThing::Int(self.d()?));
+                    main_stuff.push_back(MainStuff::Int(self.d()?));
                 }
                 Token::Stack => {
                     self.next();
-                    main_things.push_back(MainThing::Stack(self.x()?));
+                    main_stuff.push_back(MainStuff::Stack(self.x()?));
                 }
                 _ => break,
             }
         }
 
         Ok(Proc::Main {
-            main_things,
+            main_stuff,
             s: self.s()?,
         })
     }

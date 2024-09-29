@@ -25,7 +25,7 @@ pub struct Arg {
 }
 
 #[derive(Debug)]
-pub enum MainThing {
+pub enum MainStuff {
     Int(Vdec),
     Stack(Var),
 }
@@ -33,7 +33,7 @@ pub enum MainThing {
 #[derive(Debug)]
 pub enum Proc {
     Main {
-        main_things: LinkedList<MainThing>,
+        main_stuff: LinkedList<MainStuff>,
         s: Stm,
     },
     Other {
