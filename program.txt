@@ -2,6 +2,7 @@ procedure main()
     int x1
     int x2
     int n
+    skip
     call fib_fwd(x1, x2, n)
 
 procedure fib(int x1, int x2, int n)

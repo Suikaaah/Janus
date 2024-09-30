@@ -3,6 +3,7 @@ mod tokenizer;
 mod util;
 
 use ast::Ast;
+use std::{fs::File, io::Write};
 use tokenizer::Tokenizer;
 use util::read_file;
 
@@ -23,5 +24,6 @@ fn main() {
         return;
     }
 
-    println!("{ast:#?}");
+    let mut file = File::create("ast.txt").expect("failed to create file");
+    write!(file, "{ast:#?}").expect("failed to write to file");
 }

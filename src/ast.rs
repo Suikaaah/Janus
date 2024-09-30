@@ -291,7 +291,10 @@ impl Ast {
 
                 Ok(call_or_uncall(q, xs))
             }
-            Token::Skip => Ok(Stm::Skip),
+            Token::Skip => {
+                self.next();
+                Ok(Stm::Skip)
+            }
             x => bail!("expected non-recursive statement found {x:?}"),
         }
     }
@@ -361,7 +364,10 @@ impl Ast {
                 self.step(Token::RParen)?;
                 Ok(Exp::Top(x))
             }
-            Token::Nil => Ok(Exp::Nil),
+            Token::Nil => {
+                self.next();
+                Ok(Exp::Nil)
+            }
             x => bail!("expected non-recursive expression found {x:?}"),
         }
     }
@@ -409,7 +415,7 @@ impl Ast {
             Token::PlusEqual => ModOp::Add,
             Token::MinusEqual => ModOp::Sub,
             Token::CaretEqual => ModOp::Xor,
-            x => bail!("expected modop found {x:?}"),
+            x => bail!("expected mod_op found {x:?}"),
         };
 
         self.next();
